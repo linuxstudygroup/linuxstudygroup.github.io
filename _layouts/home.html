@@ -8,7 +8,7 @@ layout: default
 {% for cate in site.categories %}
 {% capture cate_name %}{{ cate | first }}{% endcapture %}
 {% assign sortedPosts = site.categories[cate_name] | sort: 'title'%}
-            <li>{{cate_name | split: "_" | join: " "}}</li>
+            <li class="{{cate_name}}">{{cate_name | split: "_" | join: " "}}</li>
 {% endfor%}
         </ul>
     </nav>

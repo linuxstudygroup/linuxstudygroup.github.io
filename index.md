@@ -31,15 +31,19 @@ $(document).ready(function(){
         console.log("activate_block is empty");
         window.activate_block = $('div.sub-table h2')[0].innerHTML.split(' ').join('_');
         $('div.sub-table.' + window.activate_block)[0].style.display = "";
+        $('header nav ul li.' + window.activate_block)[0].style.backgroundColor = "green";
     }
     var nav_list = $('header nav ul li');
     for(l of nav_list){
         l.onclick = function(){
             var content = this.innerHTML.split(' ').join('_');
             if(content != window.activate_block){
+                // display content list block
                 $('div.sub-table.' + window.activate_block)[0].style.display = "none";
+                $('header nav ul li.' + window.activate_block)[0].style.backgroundColor = "yellowgreen";
                 window.activate_block = content;
                 $('div.sub-table.' + window.activate_block)[0].style.display = "";
+                $('header nav ul li.' + window.activate_block)[0].style.backgroundColor = "green";   
             }
         }
     }
