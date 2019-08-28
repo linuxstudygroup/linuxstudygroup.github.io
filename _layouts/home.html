@@ -2,37 +2,16 @@
 layout: default
 ---
 
+<header>
+    <nav>
+        <ul>
+{% for cate in site.categories %}
+{% capture cate_name %}{{ cate | first }}{% endcapture %}
+{% assign sortedPosts = site.categories[cate_name] | sort: 'title'%}
+            <li>{{cate_name | split: "_" | join: " "}}</li>
+{% endfor%}
+        </ul>
+    </nav>
+</header>
+
 {{ content }}
-
-<script type="text/javascript">
-    $(function(){
-            function animateBar($item, noAni){
-                var spanLeft = $item.find('span').offset().left;
-                var conLeft = $item.parent().offset().left;
-                var left = spanLeft - conLeft;
-                var width = $item.find('span').width() + 8;
-
-                if(noAni){
-                    $('#categoryBar').css({left:left, width:width});
-                }else{
-                    $('#categoryBar').stop().animate({left:left, width:width}, 300)
-                }
-            }
-
-            var waitForFinalEvent = (function(){
-                var timers = {};
-                return function(callback, ms, uniqueId){
-                    if(!uniqueId){
-                        uniqueOd = "Don't call this twice without a uniqueId";
-                    }
-                    if(timers[uniqueId]){
-                        clearTimeout(timers[uniqueId]);
-                    }
-                    timers[uniqueId] = setTimeout(callback, ms);
-                }
-            })();
-
-            
-    });
-
-</script>
